@@ -1,5 +1,91 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#0f766e"/><title>Ashirvad Hospital | Management</title></head>
-  <body><div id="root"></div><script type="module" src="/src/main.jsx"></script></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashirvad Hospital | Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">✚</div><div><strong>Ashirvad</strong><small>Hospital</small></div></div>
+    <nav>
+      <a class="active" href="#dashboard">▦ <span>Dashboard</span></a>
+      <a href="#patients">♙ <span>Patients</span></a>
+      <a href="#appointments">▣ <span>Appointments</span></a>
+      <a href="#beds">▤ <span>Beds & Admissions</span></a>
+      <a href="#billing">₹ <span>Billing</span></a>
+    </nav>
+    <div class="sidebar-note">Small Hospital<br><span>Management Portal</span></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow">HOSPITAL MANAGEMENT</p><h1>Dashboard</h1></div>
+      <div class="profile"><span class="online"></span> Admin <div class="avatar">A</div></div>
+    </header>
+
+    <section id="dashboard">
+      <div class="welcome"><div><p class="eyebrow light">WELCOME BACK</p><h2>Ashirvad Hospital</h2><p>Manage your hospital activity in one place.</p></div><div class="welcome-mark">✚</div></div>
+      <div class="stats">
+        <article class="stat"><span class="stat-icon blue">♙</span><p>Total Patients</p><strong id="patientCount">0</strong><small>Registered in this browser</small></article>
+        <article class="stat"><span class="stat-icon purple">▣</span><p>Appointments</p><strong id="appointmentCount">0</strong><small>Saved appointments</small></article>
+        <article class="stat"><span class="stat-icon green">▤</span><p>Available Beds</p><strong id="availableBeds">5</strong><small>Out of 5 beds</small></article>
+        <article class="stat"><span class="stat-icon orange">₹</span><p>Billing Entries</p><strong id="billCount">0</strong><small>Saved bills</small></article>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel" id="patients">
+        <div class="panel-heading"><div><p class="eyebrow">PATIENT RECORDS</p><h3>Register Patient</h3></div><span class="tag">New entry</span></div>
+        <form id="patientForm" class="form-grid">
+          <label>Patient full name<input id="patientName" required maxlength="80" placeholder="Enter patient name"></label>
+          <label>Age<input id="patientAge" type="number" min="0" max="120" required placeholder="Age"></label>
+          <label>Gender<select id="patientGender" required><option value="">Select gender</option><option>Female</option><option>Male</option><option>Other</option></select></label>
+          <label>Mobile number<input id="patientPhone" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile"></label>
+          <label class="full">Address<textarea id="patientAddress" rows="2" placeholder="Patient address"></textarea></label>
+          <button class="primary full" type="submit">＋ Save Patient</button>
+        </form>
+        <p class="form-message" id="patientMessage" role="status"></p>
+      </article>
+
+      <article class="panel" id="appointments">
+        <div class="panel-heading"><div><p class="eyebrow">SCHEDULE</p><h3>Quick Appointment</h3></div><span class="tag">Booking</span></div>
+        <form id="appointmentForm" class="form-grid">
+          <label class="full">Patient name<input id="appointmentPatient" required placeholder="Patient name"></label>
+          <label>Doctor / Staff<input id="doctorName" required placeholder="Doctor name"></label>
+          <label>Date<input id="appointmentDate" type="date" required></label>
+          <label class="full">Time<input id="appointmentTime" type="time" required></label>
+          <button class="primary full" type="submit">＋ Save Appointment</button>
+        </form>
+        <p class="form-message" id="appointmentMessage" role="status"></p>
+      </article>
+    </section>
+
+    <section class="content-grid lower-grid">
+      <article class="panel" id="beds">
+        <div class="panel-heading"><div><p class="eyebrow">INPATIENT CARE</p><h3>Bed Availability</h3></div><span class="tag">5 beds</span></div>
+        <div id="bedList" class="bed-list"></div>
+        <p class="muted">Demo controls only. Connect admission records to the backend before real use.</p>
+      </article>
+      <article class="panel" id="billing">
+        <div class="panel-heading"><div><p class="eyebrow">PAYMENTS</p><h3>Quick Billing</h3></div><span class="tag">INR ₹</span></div>
+        <form id="billingForm" class="form-grid">
+          <label class="full">Patient name<input id="billPatient" required placeholder="Patient name"></label>
+          <label class="full">Description<input id="billDescription" required placeholder="Consultation / service"></label>
+          <label class="full">Amount (₹)<input id="billAmount" type="number" min="1" step="0.01" required placeholder="0.00"></label>
+          <button class="primary full" type="submit">＋ Save Bill</button>
+        </form>
+        <p class="form-message" id="billingMessage" role="status"></p>
+      </article>
+    </section>
+
+    <section class="panel records-panel">
+      <div class="panel-heading"><div><p class="eyebrow">RECENT ACTIVITY</p><h3>Recent Patients</h3></div><button id="clearDemoData" class="text-button" type="button">Clear demo data</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Patient</th><th>Age</th><th>Gender</th><th>Mobile</th><th>Registered</th></tr></thead><tbody id="patientTable"><tr><td colspan="5" class="empty">No patients registered yet.</td></tr></tbody></table></div>
+    </section>
+    <footer>© <span id="year"></span> Ashirvad Hospital · Starter frontend demo</footer>
+  </main>
+  <script src="js/app.js"></script>
+</body>
 </html>
